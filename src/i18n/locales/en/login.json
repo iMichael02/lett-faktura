@@ -1,0 +1,14 @@
+{
+    "home": "Home",
+    "order": "Order",
+    "ourCustomers": "Our Customers",
+    "aboutUs": "About Us",
+    "contactUs": "Contact Us",
+    "login": "Login",
+    "enterEmail": "Enter your email address",
+    "enterPassword": "Enter your password",
+    "email": "Email address",
+    "password": "Password",
+    "register": "Register",
+    "forgotPassword": "Forgotten Password?"
+}

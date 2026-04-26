@@ -7,26 +7,53 @@
     font-family: Arial, sans-serif;
 }
 
+.background-container {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: -100;
+}
+
+.background-image {
+    width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    z-index: -10;
+    transform: translateZ(0px);
+    backface-visibility: hidden;
+    max-width: 100%;
+    height: auto;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 3rem;
+    width: 75%;
+    padding-top: 2.5rem;
     color: white;
+    margin: auto;
 }
 
 .logo {
-    width: 3.5rem;
-    height: 3.5rem;
-    object-fit: contain;
+    height: 2rem;
+    margin-top: -0.5rem;
+    max-width: 100%;
 }
 
 .nav-menu {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    font-size: 1rem;
-    font-weight: 500;
+    display: block;
+    margin-right: 1rem;
+    line-height: 18px;
+}
+
+.nav-menu a {
+    vertical-align: bottom;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    display: inline-block;
+    line-height: 18px;
 }
 
 .nav-menu a,
@@ -36,9 +63,13 @@
     color: inherit;
 }
 
+.language-link {
+    padding-right: 0;
+}
+
 .language-selector {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     gap: 0.5rem;
 }
 
@@ -62,7 +93,10 @@
     width: 100%;
     max-width: 25vw;
     padding: 3rem 3.5rem;
-    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.15);
+}
+
+.login-title {
+    text-align: center;
 }
 
 .password-toggle {

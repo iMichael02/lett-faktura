@@ -22,10 +22,14 @@ const Login = () => {
     const { t } = useTranslation("login");
 
     return (
-        <div
-            className="login-page"
-            style={{ backgroundImage: `url(${backgroundImage})` }}
-        >
+        <div className="login-page">
+            <div className="background-container">
+                <img
+                    src={backgroundImage}
+                    alt="Background"
+                    className="background-image"
+                />
+            </div>
             <header className="header">
                 <img src={logoImage} alt="Logo" className="logo" />
 
@@ -35,11 +39,16 @@ const Login = () => {
                     <a href="#">{t("ourCustomers")}</a>
                     <a href="#">{t("aboutUs")}</a>
                     <a href="#">{t("contactUs")}</a>
-
-                    <div className="language-selector">
-                        <span>{t("language")}</span>
-                        <img src={flagImage} alt="Language" className="flag" />
-                    </div>
+                    <a href="#" className="language-link">
+                        <div className="language-selector">
+                            <span>{t("language")}</span>
+                            <img
+                                src={flagImage}
+                                alt="Language"
+                                className="flag"
+                            />
+                        </div>
+                    </a>
                 </nav>
             </header>
 

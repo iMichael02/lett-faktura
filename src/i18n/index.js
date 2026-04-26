@@ -10,7 +10,7 @@ import seLogin from "./locales/se/login.json";
 i18n.use(LanguageDetector)
     .use(initReactI18next)
     .init({
-        fallbackLng: "en",
+        fallbackLng: "se",
         debug: true,
 
         resources: {

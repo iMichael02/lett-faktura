@@ -10,42 +10,25 @@ const NavBar = () => {
     const { t } = useTranslation("login");
 
     return (
-        // <header className="header">
-        //     <img src={logoImage} alt="Logo" className="logo" />
-
-        //     <nav className="nav-menu">
-        //         <a href="#">{t("home")}</a>
-        //         <a href="#">{t("order")}</a>
-        //         <a href="#">{t("ourCustomers")}</a>
-        //         <a href="#">{t("aboutUs")}</a>
-        //         <a href="#">{t("contactUs")}</a>
-        //         <a href="#" className="language-link">
-        //             <div className="language-selector">
-        //                 <span>{t("language")}</span>
-        //                 <img src={flagImageSE} alt="Language" className="flag" />
-        //             </div>
-        //         </a>
-        //     </nav>
-        // </header>
-        <nav class="navigation-out">
-            <header class="navigation-header">
-                <section class="navigation-section">
-                    <div class="logoa">
+        <nav className="navigation-out">
+            <header className="navigation-header">
+                <section className="navigation-section">
+                    <div className="logoa">
                         <a href="/">
                             <img
                                 alt=""
-                                class="navigation-logo"
+                                className="navigation-logo"
                                 src={logoImage}
                             />
                         </a>
                     </div>
-                    <div class="open-menu-dds">
+                    <div className="open-menu-dds">
                         <svg
                             stroke="currentColor"
                             fill="currentColor"
                             stroke-width="0"
                             viewBox="0 0 24 24"
-                            class="navigation-svg"
+                            className="navigation-svg"
                             height="1em"
                             width="1em"
                             xmlns="http://www.w3.org/2000/svg"
@@ -53,116 +36,122 @@ const NavBar = () => {
                             <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
                         </svg>
                     </div>
-                    <div class="navigation-menu-bar">
-                        <div class="menu-drop-down">
-                            <div class="menu-drop-down-container">
-                                <a class="menu-drop-down-item" href="#">
-                                    <span class="collectionSpan">
-                                        <p class="menu-item-name">
+                    <div className="navigation-menu-bar">
+                        <div className="menu-drop-down">
+                            <div className="menu-drop-down-container">
+                                <a className="menu-drop-down-item" href="#">
+                                    <span className="collectionSpan">
+                                        <p className="menu-item-name">
                                             {t("home")}
                                         </p>
                                     </span>
                                 </a>
-                                <a class="menu-drop-down-item" href="#">
-                                    <span class="collectionSpan">
-                                        <p class="menu-item-name">
+                                <a className="menu-drop-down-item" href="#">
+                                    <span className="collectionSpan">
+                                        <p className="menu-item-name">
                                             {t("order")}
                                         </p>
                                     </span>
                                 </a>
-                                <a class="menu-drop-down-item" href="#">
-                                    <span class="collectionSpan">
-                                        <p class="menu-item-name">
+                                <a className="menu-drop-down-item" href="#">
+                                    <span className="collectionSpan">
+                                        <p className="menu-item-name">
                                             {t("ourCustomers")}
                                         </p>
                                     </span>
                                 </a>
-                                <a class="menu-drop-down-item" href="#">
-                                    <span class="collectionSpan">
-                                        <p class="menu-item-name">
+                                <a className="menu-drop-down-item" href="#">
+                                    <span className="collectionSpan">
+                                        <p className="menu-item-name">
                                             {t("aboutUs")}
                                         </p>
                                     </span>
                                 </a>
-                                <a class="menu-drop-down-item" href="#">
-                                    <span class="collectionSpan">
-                                        <p class="menu-item-name">
+                                <a className="menu-drop-down-item" href="#">
+                                    <span className="collectionSpan">
+                                        <p className="menu-item-name">
                                             {t("contactUs")}
                                         </p>
                                     </span>
                                 </a>
                             </div>
                         </div>
-                        <div class="pc-menu">
-                            <a class="pc-menu-items" href="#">
-                                <span class="collectionSpan">
-                                    <p class="collectionitem">{t("home")}</p>
+                        <div className="pc-menu">
+                            <a className="pc-menu-items" href="#">
+                                <span className="collectionSpan">
+                                    <p className="collectionitem">
+                                        {t("home")}
+                                    </p>
                                 </span>
                             </a>
-                            <a class="pc-menu-items" href="#">
-                                <span class="collectionSpan">
-                                    <p class="collectionitem">{t("order")}</p>
+                            <a className="pc-menu-items" href="#">
+                                <span className="collectionSpan">
+                                    <p className="collectionitem">
+                                        {t("order")}
+                                    </p>
                                 </span>
                             </a>
-                            <a class="pc-menu-items" href="#">
-                                <span class="collectionSpan">
-                                    <p class="collectionitem">
+                            <a className="pc-menu-items" href="#">
+                                <span className="collectionSpan">
+                                    <p className="collectionitem">
                                         {t("ourCustomers")}{" "}
                                     </p>
                                 </span>
                             </a>
-                            <a class="pc-menu-items" href="#">
-                                <span class="collectionSpan">
-                                    <p class="collectionitem">{t("aboutUs")}</p>
+                            <a className="pc-menu-items" href="#">
+                                <span className="collectionSpan">
+                                    <p className="collectionitem">
+                                        {t("aboutUs")}
+                                    </p>
                                 </span>
                             </a>
-                            <a class="pc-menu-items" href="#">
-                                <span class="collectionSpan">
-                                    <p class="collectionitem">
+                            <a className="pc-menu-items" href="#">
+                                <span className="collectionSpan">
+                                    <p className="collectionitem">
                                         {t("contactUs")}
                                     </p>
                                 </span>
                             </a>
                             <a
-                                class="pc-menu-items language-pc-menu-items"
+                                className="pc-menu-items language-pc-menu-items"
                                 href="#"
                             >
-                                <div class="">
-                                    <div class="language-title-box">
+                                <div className="">
+                                    <div className="language-title-box">
                                         {" "}
-                                        <p class="language-name">Svenska</p>
+                                        <p className="language-name">Svenska</p>
                                         <img
                                             src={flagImageSE}
-                                            class="flag-icon drop-down-image"
+                                            className="flag-icon drop-down-image"
                                             alt=""
                                         />{" "}
                                     </div>
                                 </div>
                             </a>
                         </div>
-                        <div class="lang-drop">
-                            <div class="lang-drop-container">
-                                <div class="dropdownList">
-                                    <div class="language-Svenska drop-down-element">
-                                        <div class="drop-down-lang-name">
+                        <div className="lang-drop">
+                            <div className="lang-drop-container">
+                                <div className="dropdownList">
+                                    <div className="language-Svenska drop-down-element">
+                                        <div className="drop-down-lang-name">
                                             Svenska
                                         </div>
-                                        <div class="drop-down-image-div">
+                                        <div className="drop-down-image-div">
                                             <img
                                                 src={flagImageSE}
-                                                class="drop-down-image"
+                                                className="drop-down-image"
                                                 alt="Svenska"
                                             />
                                         </div>
                                     </div>
-                                    <div class="language-English drop-down-element">
-                                        <div class="drop-down-lang-name">
+                                    <div className="language-English drop-down-element">
+                                        <div className="drop-down-lang-name">
                                             English
                                         </div>
-                                        <div class="drop-down-image-div">
+                                        <div className="drop-down-image-div">
                                             <img
                                                 src={flagImageGB}
-                                                class="drop-down-image"
+                                                className="drop-down-image"
                                                 alt="English"
                                             />
                                         </div>
@@ -171,42 +160,42 @@ const NavBar = () => {
                             </div>
                         </div>
                     </div>
-                    <div class="lang-dropk">
+                    <div className="lang-dropk">
                         <div>
-                            <div class="dropdownContainer">
-                                <div class="language-box">
+                            <div className="dropdownContainer">
+                                <div className="language-box">
                                     {" "}
-                                    <p class="flag-name collectionitem">
+                                    <p className="flag-name collectionitem">
                                         {t("language")}
                                     </p>
                                     <img
                                         src={flagImageSE}
-                                        class="icon-flag-nav"
+                                        className="icon-flag-nav"
                                         alt="Svenska"
                                     />{" "}
                                 </div>
                             </div>
-                            <div class="dropdownList">
-                                <div class="language-Svenska drop-down-element">
-                                    <div class="drop-down-lang-name">
+                            <div className="dropdownList">
+                                <div className="language-Svenska drop-down-element">
+                                    <div className="drop-down-lang-name">
                                         {t("language")}
                                     </div>
-                                    <div class="drop-down-image-div">
+                                    <div className="drop-down-image-div">
                                         <img
                                             src={flagImageSE}
-                                            class="drop-down-image"
+                                            className="drop-down-image"
                                             alt="Svenska"
                                         />
                                     </div>
                                 </div>
-                                <div class="language-English drop-down-element">
-                                    <div class="drop-down-lang-name">
+                                <div className="language-English drop-down-element">
+                                    <div className="drop-down-lang-name">
                                         {t("language")}
                                     </div>
-                                    <div class="drop-down-image-div">
+                                    <div className="drop-down-image-div">
                                         <img
                                             src={flagImageGB}
-                                            class="drop-down-image"
+                                            className="drop-down-image"
                                             alt="English"
                                         />
                                     </div>

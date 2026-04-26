@@ -4,11 +4,13 @@ import "../../styles/shared/footer.css";
 const Footer = () => {
     const { t } = useTranslation("login");
     return (
-        <div class="footer">
-            <footer class="footer-div">
-                <div class="footer--text-section">
-                    <div class="footer--lettafaktura-text">123 Fakturera</div>
-                    <div class="footer-menu">
+        <div className="footer">
+            <footer className="footer-div">
+                <div className="footer--text-section">
+                    <div className="footer--lettafaktura-text">
+                        123 Fakturera
+                    </div>
+                    <div className="footer-menu">
                         <a href="#">
                             <span>
                                 <p>{t("home")}</p>
@@ -26,8 +28,8 @@ const Footer = () => {
                         </a>
                     </div>
                 </div>
-                <div class="footer-copyright">
-                    <p class="copyright-text">
+                <div className="footer-copyright">
+                    <p className="copyright-text">
                         © Lättfaktura, CRO no. 638537, 2025. All rights
                         reserved.
                     </p>

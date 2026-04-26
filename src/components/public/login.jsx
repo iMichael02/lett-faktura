@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import "../../styles/public/login.css";
+import NavBar from "../shared/navbar";
+import Footer from "../shared/footer";
 
 const Login = () => {
     const backgroundImage =
         "https://storage.123fakturera.se/public/wallpapers/sverige43.jpg";
-    const logoImage =
-        "https://storage.123fakturera.se/public/icons/diamond.png";
-    const flagImage = "https://storage.123fakturere.no/public/flags/SE.png";
     const showPasswordIcon =
         "https://online.123fakturera.se/components/icons/show_password.png";
     const hidePasswordIcon =
@@ -30,81 +29,90 @@ const Login = () => {
                     className="background-image"
                 />
             </div>
-            <header className="header">
-                <img src={logoImage} alt="Logo" className="logo" />
 
-                <nav className="nav-menu">
-                    <a href="#">{t("home")}</a>
-                    <a href="#">{t("order")}</a>
-                    <a href="#">{t("ourCustomers")}</a>
-                    <a href="#">{t("aboutUs")}</a>
-                    <a href="#">{t("contactUs")}</a>
-                    <a href="#" className="language-link">
-                        <div className="language-selector">
-                            <span>{t("language")}</span>
-                            <img
-                                src={flagImage}
-                                alt="Language"
-                                className="flag"
-                            />
-                        </div>
-                    </a>
-                </nav>
-            </header>
+            <NavBar />
 
-            <main className="main-content">
-                <div className="login-card">
-                    <h1 className="login-title">{t("login")}</h1>
-
-                    <form className="login-form">
-                        <div className="form-group">
-                            <label>{t("enterEmail")}</label>
-                            <input type="email" placeholder={t("email")} />
-                        </div>
-
-                        <div className="form-group">
-                            <label>{t("enterPassword")}</label>
-                            <div>
-                                <input
-                                    type={showPassword ? "text" : "password"}
-                                    placeholder={t("password")}
-                                />
-                                <img
-                                    className="password-toggle"
-                                    src={passwordIcon}
-                                    alt="show password"
-                                    onClick={togglePasswordVisibility}
-                                />
+            <div class="content">
+                <div class="login-content-root">
+                    <div class="back-login">
+                        <form novalidate="" autocomplete="off">
+                            <h2 class="login-heading">{t("login")}</h2>
+                            <section class="login-section">
+                                <div class="login-email">
+                                    <div>
+                                        <label for="" class="login-email-label">
+                                            {t("enterEmail")}
+                                        </label>
+                                    </div>
+                                    <input
+                                        class="login-input"
+                                        type="email"
+                                        id="email"
+                                        required=""
+                                        name="username"
+                                        value=""
+                                        autocomplete="on"
+                                        placeholder={t("email")}
+                                    />
+                                </div>
+                                <span class="email-error-span error-span"></span>
+                                <div class="login-password">
+                                    <div>
+                                        <label
+                                            for=""
+                                            class="login-password-label"
+                                        >
+                                            {t("enterPassword")}
+                                        </label>
+                                    </div>
+                                    <div class="password-input-div">
+                                        <input
+                                            class="login-input"
+                                            type={
+                                                showPassword
+                                                    ? "text"
+                                                    : "password"
+                                            }
+                                            id="password"
+                                            required=""
+                                            name="password"
+                                            value=""
+                                            placeholder={t("password")}
+                                        />
+                                        <img
+                                            id="show-password-img"
+                                            src={passwordIcon}
+                                            alt={t("showPassword")}
+                                            onClick={togglePasswordVisibility}
+                                        />
+                                    </div>
+                                </div>
+                                <span class="password-error-span error-span"></span>
+                                <section class="invalid-credentials"></section>
+                            </section>
+                            <div class="Login-Button-div">
+                                <button class="Login-Button" type="submit">
+                                    {t("login")}
+                                </button>
                             </div>
-                        </div>
-
-                        <button type="submit" className="login-button">
-                            {t("login")}
-                        </button>
-
-                        <div className="form-links">
-                            <a href="#">{t("register")}</a>
-                            <a href="#">{t("forgotPassword")}</a>
-                        </div>
-                    </form>
-                </div>
-            </main>
-
-            <footer className="footer">
-                <div className="footer-brand">123 Fakturera</div>
-
-                <div className="footer-bottom">
-                    <p>
-                        © Lättfaktura, CRO no.638537, 2025. All rights reserved.
-                    </p>
-
-                    <div className="footer-links">
-                        <a href="#">{t("home")}</a>
-                        <a href="#">{t("order")}</a>
-                        <a href="#">{t("contactUs")}</a>
+                        </form>
+                        <section class="gotodifferntlink">
+                            <a href="/register" class="login-new-customer">
+                                {t("register")}
+                            </a>
+                            <a
+                                id="forgot-password-link"
+                                class="login-forgot-password"
+                                href="/forgot-password"
+                            >
+                                {t("forgotPassword")}
+                            </a>
+                        </section>
                     </div>
                 </div>
-            </footer>
+            </div>
+
+            <Footer />
         </div>
     );
 };

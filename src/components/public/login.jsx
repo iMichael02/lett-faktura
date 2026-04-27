@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import "../../styles/public/login.css";
 import NavBar from "../shared/navbar";
 import Footer from "../shared/footer";
 import { loginSchema } from "../../validation/login";
 import { validateForm } from "../../validation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginRequest } from "../../redux/auth/action";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const backgroundImage =
@@ -27,6 +28,8 @@ const Login = () => {
         password: "",
     });
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -54,6 +57,12 @@ const Login = () => {
 
         dispatch(loginRequest(formData));
     };
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate("/secure");
+        }
+    }, [isAuthenticated, navigate]);
 
     return (
         <div className="login-page">

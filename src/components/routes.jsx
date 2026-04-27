@@ -7,7 +7,7 @@ const AppRouter = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/*" element={<Public />} />
-                {/* <Route path="/secure" element={<Secure />} /> */}
+                <Route path="/secure/*" element={<Secure />} />
             </Routes>
         </BrowserRouter>
     );

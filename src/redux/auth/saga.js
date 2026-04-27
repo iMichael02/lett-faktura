@@ -69,7 +69,7 @@ function* handleLogout() {
     } catch (error) {
         yield put(
             loginFailure({
-                error: "Failed to remove auth token",
+                error: error.message || "Failed to remove auth token",
             }),
         );
     }

@@ -1,11 +1,11 @@
 import { Navigate, Routes, Route } from "react-router-dom";
-import Pricelist from "./pricelist";
+import ControlPage from "./controlPage";
 
 const Secure = () => {
     return (
         <Routes>
-            <Route path="/" element={<Navigate to="/pricelist" />} />
-            <Route path="/pricelist" element={<Pricelist />} />
+            <Route path="/" element={<Navigate to="control-page" />} />
+            <Route path="control-page" element={<ControlPage />} />
         </Routes>
     );
 };

@@ -3,6 +3,10 @@ import { useTranslation } from "react-i18next";
 import "../../styles/public/login.css";
 import NavBar from "../shared/navbar";
 import Footer from "../shared/footer";
+import { loginSchema } from "../../validation/login";
+import { validateForm } from "../../validation";
+import { useDispatch } from "react-redux";
+import { loginRequest } from "../../redux/auth/action";
 
 const Login = () => {
     const backgroundImage =
@@ -13,12 +17,43 @@ const Login = () => {
         "https://online.123fakturera.se/components/icons/hide_password.png";
     const [showPassword, setShowPassword] = useState(false);
     const passwordIcon = showPassword ? hidePasswordIcon : showPasswordIcon;
+    const { t } = useTranslation(["login", "validation"]);
+    const [formData, setFormData] = useState({
+        email: "",
+        password: "",
+    });
+    const [validationErrors, setValidationErrors] = useState({
+        email: "",
+        password: "",
+    });
+    const dispatch = useDispatch();
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
 
-    const { t } = useTranslation("login");
+    const handleInput = (event) => {
+        const data = {
+            ...formData,
+            [event.target.name]: event.target.value,
+        };
+
+        setFormData(data);
+
+        const errors = validateForm(loginSchema, data, t);
+
+        setValidationErrors(errors);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        if (validationErrors.email || validationErrors.password) {
+            return;
+        }
+
+        dispatch(loginRequest(formData));
+    };
 
     return (
         <div className="login-page">
@@ -35,12 +70,15 @@ const Login = () => {
             <div class="content">
                 <div class="login-content-root">
                     <div class="back-login">
-                        <form novalidate="" autocomplete="off">
+                        <form onInput={handleInput} onSubmit={handleSubmit}>
                             <h2 class="login-heading">{t("login")}</h2>
                             <section class="login-section">
                                 <div class="login-email">
                                     <div>
-                                        <label for="" class="login-email-label">
+                                        <label
+                                            for="email"
+                                            class="login-email-label"
+                                        >
                                             {t("enterEmail")}
                                         </label>
                                     </div>
@@ -48,18 +86,21 @@ const Login = () => {
                                         class="login-input"
                                         type="email"
                                         id="email"
-                                        required=""
-                                        name="username"
-                                        value=""
+                                        name="email"
                                         autocomplete="on"
                                         placeholder={t("email")}
+                                        onBlur={handleInput}
                                     />
                                 </div>
-                                <span class="email-error-span error-span"></span>
+                                {validationErrors.email && (
+                                    <span class="email-error-span error-span">
+                                        {validationErrors.email}
+                                    </span>
+                                )}
                                 <div class="login-password">
                                     <div>
                                         <label
-                                            for=""
+                                            for="password"
                                             class="login-password-label"
                                         >
                                             {t("enterPassword")}
@@ -74,10 +115,9 @@ const Login = () => {
                                                     : "password"
                                             }
                                             id="password"
-                                            required=""
                                             name="password"
-                                            value=""
                                             placeholder={t("password")}
+                                            onBlur={handleInput}
                                         />
                                         <img
                                             id="show-password-img"
@@ -87,7 +127,11 @@ const Login = () => {
                                         />
                                     </div>
                                 </div>
-                                <span class="password-error-span error-span"></span>
+                                {validationErrors.password && (
+                                    <span class="password-error-span error-span">
+                                        {validationErrors.password}
+                                    </span>
+                                )}
                                 <section class="invalid-credentials"></section>
                             </section>
                             <div class="Login-Button-div">
@@ -97,13 +141,13 @@ const Login = () => {
                             </div>
                         </form>
                         <section class="gotodifferntlink">
-                            <a href="/register" class="login-new-customer">
+                            <a href="#" class="login-new-customer">
                                 {t("register")}
                             </a>
                             <a
                                 id="forgot-password-link"
                                 class="login-forgot-password"
-                                href="/forgot-password"
+                                href="#"
                             >
                                 {t("forgotPassword")}
                             </a>

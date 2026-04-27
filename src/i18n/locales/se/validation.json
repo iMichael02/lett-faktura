@@ -1,0 +1,6 @@
+{
+    "email.empty": "Vänligen skriv in en giltig epost adress",
+    "email.email": "Vänligen skriv in en giltig epost adress",
+    "password.empty": "Detta fält kan inte vara tomt",
+    "password.min": "Detta fält måste innehålla minst 4 tecken."
+}

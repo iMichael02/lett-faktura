@@ -1,0 +1,6 @@
+{
+    "email.empty": "Please enter a valid email address",
+    "email.email": "Please enter a valid email address",
+    "password.empty": "Please enter a valid password",
+    "password.min": "This field must contain at least 4 characters."
+}

@@ -112,12 +112,9 @@ a {
 }
 
 .dropdownList {
-    display: none;
     font-weight: 500;
-    /* width: max-content; */
     background: #fff;
     color: rgba(0, 0, 0, 0.9);
-    /* color: #000; */
     font-size: 15px;
     position: absolute;
     right: -13px;
@@ -212,9 +209,11 @@ a {
             0 4px 6px -4px rgba(0, 0, 0, 0.1);
     }
     .logoa,
-    .pc-menu,
-    .lang-drop {
+    .pc-menu {
         display: none;
+    }
+    .lang-drop {
+        display: block;
     }
     .open-menu-dds {
         display: block;

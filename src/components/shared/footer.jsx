@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import "../../styles/shared/footer.css";
 
 const Footer = () => {
-    const { t } = useTranslation("login");
+    const { t } = useTranslation(["common"]);
     return (
         <div className="footer">
             <footer className="footer-div">

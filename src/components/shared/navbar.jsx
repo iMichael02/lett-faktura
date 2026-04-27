@@ -1,5 +1,7 @@
 import { useTranslation } from "react-i18next";
 import "../../styles/shared/navbar.css";
+import { useEffect, useRef, useState } from "react";
+import { changeLanguage } from "i18next";
 
 const NavBar = () => {
     const logoImage =
@@ -7,7 +9,47 @@ const NavBar = () => {
     const flagImageSE = "https://storage.123fakturera.se/public/flags/SE.png";
     const flagImageGB = "https://storage.123fakturere.no/public/flags/GB.png";
 
-    const { t } = useTranslation("login");
+    const { t, i18n } = useTranslation(["common", "login"]);
+    const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+    const flagImage = i18n.language === "se" ? flagImageSE : flagImageGB;
+
+    const handleLanguageChange = (language) => {
+        console.log(language);
+
+        changeLanguage(language);
+        setIsLanguageDropdownOpen(false);
+    };
+
+    const langPcRef = useRef(null);
+    const langMobileRef = useRef(null);
+
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            const pcContains =
+                langPcRef.current && langPcRef.current.contains(e.target);
+            const mobileContains =
+                langMobileRef.current &&
+                langMobileRef.current.contains(e.target);
+
+            if (!pcContains && !mobileContains) {
+                setIsLanguageDropdownOpen(false);
+            }
+        };
+
+        const handleEscape = (e) => {
+            if (e.key === "Escape") setIsLanguageDropdownOpen(false);
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("touchstart", handleClickOutside);
+        document.addEventListener("keydown", handleEscape);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("touchstart", handleClickOutside);
+            document.removeEventListener("keydown", handleEscape);
+        };
+    }, []);
 
     return (
         <nav className="navigation-out">
@@ -115,13 +157,20 @@ const NavBar = () => {
                             <a
                                 className="pc-menu-items language-pc-menu-items"
                                 href="#"
+                                onClick={() =>
+                                    setIsLanguageDropdownOpen(
+                                        !isLanguageDropdownOpen,
+                                    )
+                                }
                             >
                                 <div className="">
                                     <div className="language-title-box">
                                         {" "}
-                                        <p className="language-name">Svenska</p>
+                                        <p className="language-name">
+                                            {t("language")}
+                                        </p>
                                         <img
-                                            src={flagImageSE}
+                                            src={flagImage}
                                             className="flag-icon drop-down-image"
                                             alt=""
                                         />{" "}
@@ -129,36 +178,48 @@ const NavBar = () => {
                                 </div>
                             </a>
                         </div>
-                        <div className="lang-drop">
-                            <div className="lang-drop-container">
-                                <div className="dropdownList">
-                                    <div className="language-Svenska drop-down-element">
-                                        <div className="drop-down-lang-name">
-                                            Svenska
+                        {isLanguageDropdownOpen && (
+                            <div ref={langPcRef} className="lang-drop">
+                                <div className="lang-drop-container">
+                                    <div className="dropdownList">
+                                        <div
+                                            className="language-Svenska drop-down-element"
+                                            onClick={() =>
+                                                handleLanguageChange("se")
+                                            }
+                                        >
+                                            <div className="drop-down-lang-name">
+                                                Svenska
+                                            </div>
+                                            <div className="drop-down-image-div">
+                                                <img
+                                                    src={flagImageSE}
+                                                    className="drop-down-image"
+                                                    alt="Svenska"
+                                                />
+                                            </div>
                                         </div>
-                                        <div className="drop-down-image-div">
-                                            <img
-                                                src={flagImageSE}
-                                                className="drop-down-image"
-                                                alt="Svenska"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="language-English drop-down-element">
-                                        <div className="drop-down-lang-name">
-                                            English
-                                        </div>
-                                        <div className="drop-down-image-div">
-                                            <img
-                                                src={flagImageGB}
-                                                className="drop-down-image"
-                                                alt="English"
-                                            />
+                                        <div
+                                            className="language-English drop-down-element"
+                                            onClick={() =>
+                                                handleLanguageChange("en")
+                                            }
+                                        >
+                                            <div className="drop-down-lang-name">
+                                                English
+                                            </div>
+                                            <div className="drop-down-image-div">
+                                                <img
+                                                    src={flagImageGB}
+                                                    className="drop-down-image"
+                                                    alt="English"
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        )}
                     </div>
                     <div className="lang-dropk">
                         <div>
@@ -175,32 +236,37 @@ const NavBar = () => {
                                     />{" "}
                                 </div>
                             </div>
-                            <div className="dropdownList">
-                                <div className="language-Svenska drop-down-element">
-                                    <div className="drop-down-lang-name">
-                                        {t("language")}
+                            {isLanguageDropdownOpen && (
+                                <div
+                                    ref={langMobileRef}
+                                    className="dropdownList"
+                                >
+                                    <div className="language-Svenska drop-down-element">
+                                        <div className="drop-down-lang-name">
+                                            {t("language")}
+                                        </div>
+                                        <div className="drop-down-image-div">
+                                            <img
+                                                src={flagImageSE}
+                                                className="drop-down-image"
+                                                alt="Svenska"
+                                            />
+                                        </div>
                                     </div>
-                                    <div className="drop-down-image-div">
-                                        <img
-                                            src={flagImageSE}
-                                            className="drop-down-image"
-                                            alt="Svenska"
-                                        />
+                                    <div className="language-English drop-down-element">
+                                        <div className="drop-down-lang-name">
+                                            {t("language")}
+                                        </div>
+                                        <div className="drop-down-image-div">
+                                            <img
+                                                src={flagImageGB}
+                                                className="drop-down-image"
+                                                alt="English"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="language-English drop-down-element">
-                                    <div className="drop-down-lang-name">
-                                        {t("language")}
-                                    </div>
-                                    <div className="drop-down-image-div">
-                                        <img
-                                            src={flagImageGB}
-                                            className="drop-down-image"
-                                            alt="English"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
+                            )}
                         </div>
                     </div>
                 </section>

@@ -1,6 +1,13 @@
 import axios from "axios";
 import { call, put, takeLatest, all } from "redux-saga/effects";
-import { LOGIN_REQUEST, LOGOUT, loginSuccess, loginFailure } from "./action";
+import {
+    LOGIN_REQUEST,
+    LOGOUT,
+    loginSuccess,
+    loginFailure,
+    logout,
+} from "./action";
+import { clearToken, getStoredToken, setToken } from "../../utils/tokenUtils";
 
 const API_BASE = import.meta.env.VITE_API_URL || "";
 
@@ -38,7 +45,7 @@ function* handleLogin(action) {
         const token = response.token || response.accessToken || null;
 
         if (token) {
-            localStorage.setItem("auth_token", token);
+            setToken(token);
         } else {
             yield put(
                 loginFailure({
@@ -63,9 +70,29 @@ function* handleLogin(action) {
     }
 }
 
+const logoutApi = async () => {
+    try {
+        await axios.post(
+            `${API_BASE}/auth/logout`,
+            {},
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${getStoredToken()}`,
+                },
+            },
+        );
+    } catch (err) {
+        console.error("Logout API error:", err);
+        throw err;
+    }
+};
+
 function* handleLogout() {
     try {
-        localStorage.removeItem("auth_token");
+        yield call(logoutApi);
+        clearToken();
+        yield put(logout());
     } catch (error) {
         yield put(
             loginFailure({

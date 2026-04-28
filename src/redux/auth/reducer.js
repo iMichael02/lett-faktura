@@ -1,9 +1,12 @@
+import { decodeToken } from "../../utils/tokenUtils";
 import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT } from "./action";
 
 const initialState = {
     isAuthenticated: false,
     user: null,
     token: null,
+    exp: null,
+    iat: null,
     loading: false,
     error: null,
 };
@@ -16,21 +19,27 @@ const authReducer = (state = initialState, action) => {
                 loading: true,
                 error: null,
             };
-        case LOGIN_SUCCESS:
+        case LOGIN_SUCCESS: {
+            const { exp, iat } = decodeToken(action.payload.token);
             return {
                 ...state,
                 isAuthenticated: true,
                 user: action.payload.user,
                 token: action.payload.token,
+                exp,
+                iat,
                 loading: false,
                 error: null,
             };
+        }
         case LOGIN_FAILURE:
             return {
                 ...state,
                 isAuthenticated: false,
                 user: null,
                 token: null,
+                exp: null,
+                iat: null,
                 loading: false,
                 error: action.payload.error,
             };
@@ -40,6 +49,8 @@ const authReducer = (state = initialState, action) => {
                 isAuthenticated: false,
                 user: null,
                 token: null,
+                exp: null,
+                iat: null,
                 loading: false,
                 error: null,
             };

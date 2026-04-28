@@ -3,14 +3,15 @@
     min-height: calc(100vh - 5rem);
     background: #ffffff;
     border-right: 1px solid #e5e5e5;
-    padding: 1.5rem;
+    padding: 1rem;
 }
 
 .sidebar-title {
     text-align: center;
-    margin-bottom: 1.5rem;
-    font-size: 1.75rem;
+    padding-bottom: 1rem;
+    font-size: 1.5rem;
     font-weight: 500;
+    border-bottom: 1px solid #0f7be8;
 }
 
 .sidebar-menu {
@@ -34,4 +35,8 @@
 
 .menu-icon {
     font-size: 0.75rem;
+}
+
+.menu-icon.active {
+    width: 1.5rem;
 }

@@ -26,7 +26,10 @@ export const ControlSideBar = () => {
                         key={item}
                         className={`menu-item ${item === "Price List" ? "active" : ""}`}
                     >
-                        <span className="menu-icon">•</span>
+                        <span className="menu-icon active">
+                            {item === "Price List" && "👽"}
+                        </span>
+                        <span className="menu-icon">👾</span>
                         <span>{item}</span>
                     </li>
                 ))}

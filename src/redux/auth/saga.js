@@ -1,13 +1,7 @@
 import axios from "axios";
 import { call, put, takeLatest, all } from "redux-saga/effects";
-import {
-    LOGIN_REQUEST,
-    LOGOUT,
-    loginSuccess,
-    loginFailure,
-    logout,
-} from "./action";
-import { clearToken, getStoredToken, setToken } from "../../utils/tokenUtils";
+import { LOGIN_REQUEST, LOGOUT, loginSuccess, loginFailure } from "./action";
+import { clearToken, setToken } from "../../utils/tokenUtils";
 
 const API_BASE = import.meta.env.VITE_API_URL || "";
 
@@ -78,7 +72,6 @@ const logoutApi = async () => {
             {
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${getStoredToken()}`,
                 },
             },
         );
@@ -92,7 +85,6 @@ function* handleLogout() {
     try {
         yield call(logoutApi);
         clearToken();
-        yield put(logout());
     } catch (error) {
         yield put(
             loginFailure({

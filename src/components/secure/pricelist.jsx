@@ -1,16 +1,27 @@
 import { useDispatch, useSelector } from "react-redux";
 import "../../styles/secure/pricelist.css";
 import { useEffect } from "react";
-import { priceListingRequest } from "../../redux/prices/action";
+import {
+    priceListingRequest,
+    priceUpdateRequest,
+} from "../../redux/prices/action";
 
 export const PriceList = () => {
     const prices = useSelector((state) => state.prices.items);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log("Dispatching price listing request...");
         dispatch(priceListingRequest());
     }, [dispatch]);
+
+    const handleSave = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const formData = new FormData(form);
+        const priceId = form.id;
+        const priceData = Object.fromEntries(formData);
+        dispatch(priceUpdateRequest({ id: priceId, ...priceData }));
+    };
 
     return (
         <div className="product-table-wrapper">
@@ -49,9 +60,18 @@ export const PriceList = () => {
                 </div>
             </div>
 
+            {prices.map((price) => (
+                <form
+                    key={price.id}
+                    id={price.id}
+                    onSubmit={(e) => handleSave(e)}
+                ></form>
+            ))}
+
             <table className="product-table">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Article No</th>
                         <th>Product/Service</th>
                         <th>In Price</th>
@@ -64,44 +84,66 @@ export const PriceList = () => {
 
                 <tbody>
                     {prices.map((price) => (
-                        <tr key={price.articleNo}>
+                        <tr key={price.id}>
+                            <td>
+                                <button className="save-button" form={price.id}>
+                                    👉
+                                </button>
+                            </td>
                             <td>
                                 <input
                                     type="text"
+                                    name="articleNo"
                                     defaultValue={price.articleNo}
+                                    form={price.id}
                                 />
                             </td>
                             <td>
                                 <input
                                     type="text"
+                                    name="product"
                                     defaultValue={price.product}
+                                    form={price.id}
                                 />
                             </td>
                             <td>
                                 <input
                                     type="number"
+                                    name="inPrice"
                                     defaultValue={price.inPrice}
+                                    form={price.id}
                                 />
                             </td>
                             <td>
                                 <input
                                     type="number"
+                                    name="price"
                                     defaultValue={price.price}
-                                />
-                            </td>
-                            <td>
-                                <input type="text" defaultValue={price.unit} />
-                            </td>
-                            <td>
-                                <input
-                                    type="number"
-                                    defaultValue={price.inStock}
+                                    form={price.id}
                                 />
                             </td>
                             <td>
                                 <input
                                     type="text"
+                                    name="unit"
+                                    defaultValue={price.unit}
+                                    form={price.id}
+                                />
+                            </td>
+                            <td>
+                                <input
+                                    type="number"
+                                    name="inStock"
+                                    defaultValue={price.inStock}
+                                    form={price.id}
+                                />
+                            </td>
+                            <td>
+                                <input
+                                    type="text"
+                                    name="description"
                                     defaultValue={price.description}
+                                    form={price.id}
                                 />
                             </td>
                         </tr>

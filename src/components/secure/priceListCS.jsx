@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import "../../styles/secure/pricelist.css";
+import "../../styles/secure/priceList.css";
 import { useEffect } from "react";
 import {
     priceListingRequest,

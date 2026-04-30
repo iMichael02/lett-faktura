@@ -1,6 +1,6 @@
-import { ControlHeader } from "../shared/controlHeader.jsx";
-import { ControlSideBar } from "../shared/controlSidebar.jsx";
-import { PriceList } from "./priceList.jsx";
+import { ControlHeader } from "../shared/controlHeader";
+import { ControlSideBar } from "../shared/controlSidebar";
+import { PriceList } from "./priceList";
 import "../../styles/secure/controlPage.css";
 
 const ControlPage = () => {

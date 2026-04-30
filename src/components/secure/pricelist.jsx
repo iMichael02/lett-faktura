@@ -28,7 +28,7 @@ export const PriceList = () => {
             <div className="top-actions">
                 <div className="search-area">
                     <div className="search-field">
-                        <input placeholder="Search Article No..." />
+                        <input placeholder="Search Article No... " />
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             height="24px"

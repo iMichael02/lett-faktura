@@ -8,13 +8,13 @@ import {
     priceUpdateSuccess,
     priceUpdateFailure,
 } from "./action";
-
-const API_BASE = import.meta.env.VITE_API_URL || "";
+import { getConfig } from "../../config";
 
 const priceListingApi = async (payload) => {
+    const config = getConfig();
     const params = new URLSearchParams(payload);
 
-    const response = await axios.get(`${API_BASE}/pricelist?${params}`, {
+    const response = await axios.get(`${config.API_URL}/pricelist?${params}`, {
         headers: {
             "Content-Type": "application/json",
         },
@@ -45,11 +45,16 @@ function* handlePriceListing(action) {
 }
 
 const priceUpdateApi = async ({ id, ...data }) => {
-    const response = await axios.put(`${API_BASE}/pricelist/${id}`, data, {
-        headers: {
-            "Content-Type": "application/json",
+    const config = getConfig();
+    const response = await axios.put(
+        `${config.API_URL}/pricelist/${id}`,
+        data,
+        {
+            headers: {
+                "Content-Type": "application/json",
+            },
         },
-    });
+    );
     return response.data;
 };
 

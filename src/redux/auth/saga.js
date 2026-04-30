@@ -2,13 +2,13 @@ import axios from "axios";
 import { call, put, takeLatest, all } from "redux-saga/effects";
 import { LOGIN_REQUEST, LOGOUT, loginSuccess, loginFailure } from "./action";
 import { clearToken, setToken } from "../../utils/tokenUtils";
-
-const API_BASE = import.meta.env.VITE_API_URL || "";
+import { getConfig } from "../../config";
 
 const loginApi = async ({ email, password }) => {
     try {
+        const config = getConfig();
         const response = await axios.post(
-            `${API_BASE}/auth/login`,
+            `${config.API_URL}/auth/login`,
             { email, password },
             {
                 headers: {
@@ -66,8 +66,9 @@ function* handleLogin(action) {
 
 const logoutApi = async () => {
     try {
+        const config = getConfig();
         await axios.post(
-            `${API_BASE}/auth/logout`,
+            `${config.API_URL}/auth/logout`,
             {},
             {
                 headers: {
